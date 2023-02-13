@@ -1,12 +1,138 @@
-.main{
-    display: flex;
-    flex-direction: row;
+html {
+  display: flex;
+  height: 100%;
+  background-color: #2a2a4a;
 }
 
-.container{
-width:50%
+body {
+  display: flex;
+  flex: 1;
 }
 
-.users{
-    width:50%
+.main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+#name {
+  margin-left: 10px;
+}
+
+.users-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.messageContainer {
+  display: flex;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+#message {
+  width: 90%;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#message:focus-visible {
+  outline: none;
+}
+
+#send {
+  width: 10%;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  cursor: pointer;
+}
+
+#send:hover {
+  background-color: #0069d9;
+}
+
+.sent-message {
+  background: #4b4b66;
+  width: 30%;
+  color: #dedefd;
+  border-color: rgba(255, 255, 255, 0.1);
+  align-self: flex-end;
+  font-size: 16px;
+  padding: 10px 17px;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  margin: 10px 10px 10px 0px;
+}
+
+.receive-message {
+  background: #1a1a3c;
+  color: #dedefd;
+  width: 30%;
+  font-size: 16px;
+  padding: 10px 17px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  margin: 10px 0px 10px 10px;
+}
+
+#containers {
+  overflow: auto;
+}
+
+#message-container {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.toast {
+  color: #dedefd;
+  text-align: center;
+  border-radius: 20px;
+  padding: 5px 10px;
+  align-self: center;
+  font-size: 12px;
+  background-color: #74829c;
+  margin: 5px 0px;
+}
+
+#users {
+  color: #dedefd;
+  margin: 10px 0px;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.username {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.typing-msg {
+  margin-left: 10px;
+  color: #dedefd;
+  font-weight: bold;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
