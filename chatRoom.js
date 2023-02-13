@@ -25,6 +25,11 @@ const setUserName = (e) => {
   }
 };
 
+const scrollToText = () => {
+  var elem = document.getElementById("containers");
+  elem.scrollTop = elem.scrollHeight;
+};
+
 const typing = (e) => {
   var code = e.keyCode ? e.keyCode : e.which;
   if (code == 13) {
@@ -56,15 +61,17 @@ socket.on("userConnected", (data) => {
   updateNoOfUsers(data.usersMapping);
   if (user) {
     document.getElementById("message-container").innerHTML +=
-      "<div><b>" + data.message + "</div>";
+      "<div class='toast'>" + data.message + "</div>";
+    scrollToText();
   }
 });
 
 socket.on("userSet", (data) => {
   user = data.userName;
+  document.getElementById("userContainer").classList.add("messageContainer");
   document.getElementById("userContainer").innerHTML =
     '<input type="text" id="message" placeholder="Please enter your message" onkeyup="typing(event)">\
-         <button type="button"  name="button" onclick="sendMessage()">Send</button>\
+         <button type="button" id="send"  name="button" onclick="sendMessage()">Send</button>\
          ';
 
   let message = document.getElementById("message");
@@ -87,17 +94,27 @@ socket.on("userSet", (data) => {
 socket.on("userTyping", (data) => {
   if (user) {
     const id = data.user.replace(/[ ]/gi, "-");
-    if (!document.querySelector(`#typing-container #${id}`))
+    if (!document.querySelector(`#typing-container #${id}`)) {
       document.getElementById(
         "typing-container"
-      ).innerHTML += `<div id='${id}'><b>${data.message}</b></div>`;
+      ).innerHTML += `<div id='${id}' class="typing-msg"><b>${data.message}</b></div>`;
+      scrollToText();
+    }
   }
 });
 
 socket.on("newMsg", (data) => {
   if (user) {
-    document.getElementById("message-container").innerHTML +=
-      "<div><b>" + data.user + "</b>: " + data.message + "</div>";
+    document.getElementById("message-container").innerHTML += `<div class='${
+      data.user === user ? "sent-message" : "receive-message"
+    }' >${
+      data.user !== user
+        ? `<div class="username">
+          ${data.user}
+        </div>`
+        : ""
+    }<div class="message"> ${data.message}<div></div>`;
+    scrollToText();
   }
 });
 
@@ -114,7 +131,8 @@ socket.on("userDisconnected", (data) => {
   updateNoOfUsers(data.usersMapping);
   if (user) {
     document.getElementById("message-container").innerHTML +=
-      "<div><b>" + `${data.userName} left the chat` + "</div>";
+      "<div class='toast'>" + `${data.userName} left the chat` + "</div>";
+    scrollToText();
   }
 });
 
