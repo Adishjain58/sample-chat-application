@@ -1,0 +1,12 @@
+.main{
+    display: flex;
+    flex-direction: row;
+}
+
+.container{
+width:50%
+}
+
+.users{
+    width:50%
+}
