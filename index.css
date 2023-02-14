@@ -66,6 +66,7 @@ body {
   border-top-left-radius: 20px;
   border-bottom-right-radius: 20px;
   margin: 10px 10px 10px 0px;
+  word-wrap: break-word;
 }
 
 .receive-message {
@@ -77,6 +78,11 @@ body {
   border-top-right-radius: 20px;
   border-bottom-left-radius: 20px;
   margin: 10px 0px 10px 10px;
+  word-wrap: break-word;
+}
+
+.message {
+  line-height: 1.5;
 }
 
 #containers {
